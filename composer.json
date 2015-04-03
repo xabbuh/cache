@@ -1,0 +1,30 @@
+{
+  "name": "openroot/cache",
+  "description": "Universal caching library for simple types.",
+  "keywords": [
+    "cache",
+    "caching",
+    "redis",
+    "memcache",
+    "session"
+  ],
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Simon Schröer",
+      "email": "code@sweikenb.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4"
+  },
+  "suggest": {
+    "predis/predis": "Required to use the REDIS-based caching strategy",
+    "memcache": "Required to use the Memcache-based caching strategy"
+  },
+  "autoload": {
+    "psr-0": {"Openroot\\Library\\Cache": ""}
+  },
+  "target-dir": "Openroot/Library/Cache"
+}
