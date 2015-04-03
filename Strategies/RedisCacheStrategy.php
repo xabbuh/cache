@@ -85,7 +85,8 @@ class RedisCacheStrategy extends AbstractCacheStrategy
      */
     public function setString($cacheKey, $value, $ttl = null)
     {
-        $redis = $this->connect()->getRedis();
+        $this->connect();
+        $redis = $this->getRedis();
 
         $redis->SET($cacheKey, $value);
         if (null !== $ttl) {
@@ -102,7 +103,9 @@ class RedisCacheStrategy extends AbstractCacheStrategy
      */
     public function getString($cacheKey)
     {
-        $data = $this->connect()->getRedis()->GET($cacheKey);
+        $this->connect();
+
+        $data = $this->getRedis()->GET($cacheKey);
         if (null === $data || false === $data) {
             return false;
         }
@@ -117,7 +120,9 @@ class RedisCacheStrategy extends AbstractCacheStrategy
      */
     public function deleteString($cacheKey)
     {
-        $this->connect()->getRedis()->DEL($cacheKey);
+        $this->connect();
+
+        $this->getRedis()->DEL($cacheKey);
 
         return $this;
     }
