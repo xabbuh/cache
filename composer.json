@@ -21,6 +21,7 @@
   },
   "suggest": {
     "predis/predis": "Required to use the REDIS-based caching strategy",
+    "symfony/http-foundation": "Required to use the Session-based caching strategy",
     "memcache": "Required to use the Memcache-based caching strategy"
   },
   "autoload": {
