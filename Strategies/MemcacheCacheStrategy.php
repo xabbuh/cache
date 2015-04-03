@@ -120,7 +120,9 @@ class MemcacheCacheStrategy extends AbstractCacheStrategy
             throw MemcacheStrategyException::ttl($ttl);
         }
 
-        $this->connect()->getMemcache()->set(
+        $this->connect();
+
+        $this->getMemcache()->set(
             $cacheKey,
             (string)$value,
             $this->compressionFlag,
@@ -137,7 +139,9 @@ class MemcacheCacheStrategy extends AbstractCacheStrategy
      */
     public function getString($cacheKey)
     {
-        $data = $this->connect()->getMemcache()->get($cacheKey, $this->compressionFlag);
+        $this->connect();
+
+        $data = $this->getMemcache()->get($cacheKey, $this->compressionFlag);
         if (null === $data || false === $data) {
             return false;
         }
@@ -152,7 +156,9 @@ class MemcacheCacheStrategy extends AbstractCacheStrategy
      */
     public function deleteString($cacheKey)
     {
-        $this->connect()->getMemcache()->delete($cacheKey);
+        $this->connect();
+
+        $this->getMemcache()->delete($cacheKey);
 
         return $this;
     }

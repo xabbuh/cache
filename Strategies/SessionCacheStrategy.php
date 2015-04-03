@@ -104,7 +104,9 @@ class SessionCacheStrategy extends AbstractCacheStrategy
             $ttl = (int)$ttl + $this->time;
         }
 
-        $this->connect()->getSession()->set(
+        $this->connect();
+
+        $this->getSession()->set(
             $cacheKey,
             [
                 'value' => (string)$value,
@@ -122,7 +124,9 @@ class SessionCacheStrategy extends AbstractCacheStrategy
      */
     public function getString($cacheKey)
     {
-        $data = $this->connect()->getSession()->get($cacheKey);
+        $this->connect();
+
+        $data = $this->getSession()->get($cacheKey);
         if ($data && is_array($data)) {
             if (isset($data['ttl']) && null !== $data['ttl'] && $data['ttl'] < $this->time) {
                 $this->deleteString($cacheKey);
@@ -143,7 +147,9 @@ class SessionCacheStrategy extends AbstractCacheStrategy
      */
     public function deleteString($cacheKey)
     {
-        $session = $this->connect()->getSession();
+        $this->connect();
+
+        $session = $this->getSession();
         if ($session->has($cacheKey)) {
             $session->remove($cacheKey);
         }
